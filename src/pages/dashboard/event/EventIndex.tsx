@@ -8,7 +8,7 @@ const BASE_URL = "https://backend-invofest-six.vercel.app/events";
 // PERBAIKAN 1: Sesuaikan tipe data dengan skema asli Prisma & Controller Backend
 type Event = {
   id: number;
-  title: string;
+  name: string;
   location: string;
   dateEvent: string;
   description: string;
@@ -135,7 +135,7 @@ export default function EventIndex() {
                 <td className="px-4 py-3.5 text-sm text-gray-300 w-10">{index + 1}</td>
 
                 <td className="px-4 py-3.5 text-sm font-semibold text-[#1a0a10]">
-                  {item.title}
+                  {item.name}
                 </td>
 
                 <td className="px-4 py-3.5">
