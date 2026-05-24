@@ -5,11 +5,11 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/pembicara";
+const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/speakers";
 
 const schema = z.object({
   name: z.string().min(3, "Nama minimal 3 karakter"),
-  job: z.string().min(3, "Pekerjaan minimal 3 karakter"),
+  role: z.string().min(3, "Pekerjaan minimal 3 karakter"),
   email: z.string().email("Email tidak valid"),
   photo: z.string().nullable().optional(),
   bio: z.string().min(5, "Bio minimal 5 karakter"),
@@ -28,11 +28,11 @@ export default function PembicaraEdit() {
   useEffect(() => {
     const loadSpeaker = async () => {
       try {
-        const response = await axios.get(`${API_URL}/${id}`);
+        const response = await axios.get(`${API_URL}/${id}`)
         const data = response.data;
         
         setValue("name", data.name, { shouldValidate: true });
-        setValue("job", data.job, { shouldValidate: true });
+        setValue("role", data.role, { shouldValidate: true });
         setValue("email", data.email, { shouldValidate: true });
         setValue("photo", data.photo, { shouldValidate: true });
         setValue("bio", data.bio || "", { shouldValidate: true });
@@ -48,7 +48,7 @@ export default function PembicaraEdit() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.put(`${API_URL}/${id}`, data);
+      await axios.put(`${API_URL}/${id}`, data)
       alert("Data pembicara berhasil diperbarui!");
       navigate("/dashboard/pembicara"); // ✅ Tetap aman ke /pembicara
     } catch (error: any) {
@@ -70,8 +70,8 @@ export default function PembicaraEdit() {
 
         <div>
           <label className="text-xs font-bold text-gray-600 block mb-1">Pekerjaan</label>
-          <input {...register("job")} placeholder="Pekerjaan" className="border p-2 rounded w-full" />
-          {errors.job && <p className="text-red-500 text-xs mt-1">{errors.job.message}</p>}
+          <input {...register("role")} placeholder="Pekerjaan" className="border p-2 rounded w-full" />
+          {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role.message}</p>}
         </div>
 
         <div>

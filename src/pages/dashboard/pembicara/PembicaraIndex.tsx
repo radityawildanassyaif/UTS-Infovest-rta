@@ -16,8 +16,8 @@ type Pembicara = {
 
 const getAllPembicara = async (): Promise<Pembicara[]> => {
   const res = await fetch(BASE_URL);
-  if (!res.ok) throw new Error("Gagal mengambil data speakers");
-  
+  if (!res.ok) throw new Error("Gagal mengambil data pembicara");
+
   const result = await res.json();
   // 2. Karena API Vercel membungkus array dalam objek "data", kita ambil result.data
   return Array.isArray(result) ? result : result.data || [];
