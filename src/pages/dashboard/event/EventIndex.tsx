@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 // ===== SERVICE =====
 // PERBAIKAN: Mengubah URL lokal ke URL Backend Vercel yang sudah live
-const BASE_URL = "https://backend-infovest-f8hl.vercel.app/speakers";
+const BASE_URL = "https://backend-infovest-f8hl.vercel.app/events";
 
 // PERBAIKAN 1: Sesuaikan tipe data dengan skema asli Prisma & Controller Backend
 type Event = {

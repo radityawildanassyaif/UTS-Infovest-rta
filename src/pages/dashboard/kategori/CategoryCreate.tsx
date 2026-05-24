@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://backend-infovest-f8hl.vercel.app/Categories";
+const BASE_URL = "https://backend-infovest-f8hl.vercel.app/categories";
 
 export default function CategoryCreate() {
-  const [name, setName] = useState("");
+  const [nama, setName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim()) {
+    if (!nama.trim()) {
       alert("Nama kategori wajib diisi!");
       return;
     }
@@ -21,12 +21,12 @@ export default function CategoryCreate() {
       const res = await fetch(BASE_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name }), // ← Menggunakan key 'name' sesuai backend & prisma
+        body: JSON.stringify({ nama }), // ← Menggunakan key 'nama' sesuai backend & prisma
       });
 
       if (!res.ok) throw new Error("Gagal menyimpan kategori");
 
-      alert(`Kategori "${name}" berhasil ditambahkan!`);
+      alert(`Kategori "${nama}" berhasil ditambahkan!`);
       navigate("/dashboard/kategori");
     } catch (error) {
       console.error(error);
@@ -46,7 +46,7 @@ export default function CategoryCreate() {
           <input
             type="text"
             className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B1D3F]/20"
-            value={name}
+            value={nama}
             onChange={(e) => setName(e.target.value)}
             placeholder="Masukkan nama kategori (contoh: Seminar, Workshop)"
           />

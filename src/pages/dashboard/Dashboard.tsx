@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 // ===== ENDPOINTS =====
 // PERBAIKAN: Dialihkan dari localhost ke URL Vercel Backend yang sudah live
-const EVENTS_URL = "https://backend-infovest-f8hl.vercel.app/speakers";
+const EVENTS_URL = "https://backend-infovest-f8hl.vercel.app/events";
 const CATEGORIES_URL = "https://backend-infovest-f8hl.vercel.app/categories";
 const PEMBICARA_URL = "https://backend-infovest-f8hl.vercel.app/speakers";
 
