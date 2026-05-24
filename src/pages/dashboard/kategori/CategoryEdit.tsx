@@ -6,7 +6,7 @@ const BASE_URL = "https://backend-infovest-f8hl.vercel.app/categories";
 
 export default function CategoryEdit() {
   const { id } = useParams<{ id: string }>();
-  const [name, setName] = useState("");
+  const [nama, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function CategoryEdit() {
         const res = await fetch(`${BASE_URL}/${id}`);
         if (!res.ok) throw new Error("Gagal mengambil detail kategori");
         const data = await res.json();
-        setName(data.name); // Isi nama awal ke form input
+        setName(data.nama); // Isi nama awal ke form input
       } catch (error) {
         console.error(error);
         alert("Gagal memuat detail kategori.");
@@ -33,7 +33,7 @@ export default function CategoryEdit() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim()) {
+    if (!nama.trim()) {
       alert("Nama kategori tidak boleh kosong!");
       return;
     }
@@ -43,7 +43,7 @@ export default function CategoryEdit() {
       const res = await fetch(`${BASE_URL}/${id}`, {
         method: "PUT", // Gunakan PUT/PATCH sesuai dengan configurasi controller backend kamu
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name }),
+        body: JSON.stringify({ nama }),
       });
 
       if (!res.ok) throw new Error("Gagal mengupdate kategori");
@@ -72,7 +72,7 @@ export default function CategoryEdit() {
           <input
             type="text"
             className="w-full border p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B1D3F]/20"
-            value={name}
+            value={nama}
             onChange={(e) => setName(e.target.value)}
             placeholder="Ubah nama kategori"
           />

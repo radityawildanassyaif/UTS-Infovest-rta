@@ -5,7 +5,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/speakers";
+const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/pembicara";
 
 const schema = z.object({
   name: z.string().min(3, "Nama minimal 3 karakter"),
@@ -48,7 +48,7 @@ export default function PembicaraEdit() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.put(`${API_URL}/pembicara/${id}`, data);
+      await axios.put(`${API_URL}/${id}`, data);
       alert("Data pembicara berhasil diperbarui!");
       navigate("/dashboard/pembicara"); // ✅ Tetap aman ke /pembicara
     } catch (error: any) {
