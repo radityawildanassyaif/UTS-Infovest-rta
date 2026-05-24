@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const BASE_URL = "https://backend-invofest-six.vercel.app/categories";
+const BASE_URL = "https://backend-infovest-f8hl.vercel.app/speakers";
 
 type Category = {
   id: number;

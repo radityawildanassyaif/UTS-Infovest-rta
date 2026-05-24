@@ -5,7 +5,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://backend-invofest-alpha.vercel.app";
+const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/speakers";
 
 const schema = z.object({
   name: z.string().min(3, "Nama minimal 3 karakter"),
@@ -28,7 +28,7 @@ export default function PembicaraEdit() {
   useEffect(() => {
     const loadSpeaker = async () => {
       try {
-        const response = await axios.get(`${API_URL}/pembicara/${id}`);
+        const response = await axios.get(`${API_URL}/${id}`);
         const data = response.data;
         
         setValue("name", data.name, { shouldValidate: true });
