@@ -5,7 +5,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/speakers";
+const API_URL = "https://backend-infovest-f8hl.vercel.app";
 
 const schema = z.object({
   name: z.string().min(3, "Nama minimal 3 karakter"),
@@ -28,7 +28,7 @@ export default function PembicaraEdit() {
   useEffect(() => {
     const loadSpeaker = async () => {
       try {
-        const response = await axios.get(`${API_URL}/${id}`)
+        const response = await axios.get(`${API_URL}/speakers/${id}`);
         const data = response.data;
         
         setValue("name", data.name, { shouldValidate: true });
@@ -48,7 +48,7 @@ export default function PembicaraEdit() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await axios.put(`${API_URL}/${id}`, data)
+      await axios.put(`${API_URL}/speakers/${id}`, data)
       alert("Data pembicara berhasil diperbarui!");
       navigate("/dashboard/pembicara"); // ✅ Tetap aman ke /pembicara
     } catch (error: any) {

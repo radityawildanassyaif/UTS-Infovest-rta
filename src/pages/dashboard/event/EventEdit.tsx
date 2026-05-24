@@ -5,8 +5,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "https://backend-infovest-f8hl.vercel.app/events";
-
+const API_URL = "https://backend-infovest-f8hl.vercel.app";
 const schema = z.object({
   name: z.string().min(3, "Nama event minimal 3 karakter"),
   categoryId: z.string().min(1, "Kategori wajib dipilih"),
@@ -33,7 +32,7 @@ export default function EventEdit() {
     const loadDependenciesAndEvent = async () => {
       try {
         const resCat = await axios.get(`${API_URL}/categories`);
-        const resPem = await axios.get(`${API_URL}/pembicara`);
+        const resPem = await axios.get(`${API_URL}/speakers`);
         setCategories(resCat.data);
         setPembicaras(resPem.data);
 
@@ -102,7 +101,7 @@ export default function EventEdit() {
           <select {...register("pembicaraId")} className="border p-2 rounded w-full bg-white">
             <option value="">Pilih Pembicara</option>
             {pembicaras.map((p) => (
-              <option key={p.id} value={p.id}>{p.name} - {p.job}</option>
+              <option key={p.id} value={p.id}>{p.name} - {p.role}</option>
             ))}
           </select>
           {errors.pembicaraId && <p className="text-red-500 text-xs mt-1">{errors.pembicaraId.message}</p>}
